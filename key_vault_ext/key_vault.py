@@ -14,9 +14,12 @@ logger = structlog.get_logger()
 class KeyVault:
     vault_url = f"https://{os.environ['KEY_VAULT_NAME']}.vault.azure.net"
 
-    def __init__(self) -> None:
+    @property
+    @lru_cache
+    def client(self):
+        """The client to connect to Azure Key Vault."""
         credential = DefaultAzureCredential()
-        self.client = SecretClient(vault_url=self.vault_url, credential=credential)
+        return SecretClient(vault_url=self.vault_url, credential=credential)
 
     @property
     def all_secrets(self) -> List[str]:

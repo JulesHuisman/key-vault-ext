@@ -62,24 +62,5 @@ class KeyVaultExtension(ExtensionBase):
         """
         Fetch secrets from Azure Key Vault and store them in a .env file.
         """
-
-    #     print("hello")
-    key_vault = KeyVault()
-
-    key_vault.print_to_file(".env")
-
-    # keyVaultName = os.environ["KEY_VAULT_NAME"]
-    # KVUri = f"https://{keyVaultName}.vault.azure.net"
-
-    # credential = DefaultAzureCredential()
-    # client = SecretClient(vault_url=KVUri, credential=credential)
-
-    # secret_properties = client.list_properties_of_secrets()
-
-    # for secret_property in secret_properties:
-    #     # the list doesn't include values or versions of the secrets
-    #     print(secret_property.name)
-
-    # retrieved_secret = client.get_secret("clockify-api-key")
-
-    # print(f"Your secret is '{retrieved_secret.value}'.")
+        key_vault = KeyVault()
+        key_vault.print_to_file(".env")
