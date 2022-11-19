@@ -39,7 +39,7 @@ plugins:
           args: describe
           description: Describe the Azure Key Vault Extension.
           executable: key_vault_extension
-        hydrate-env:
+        hydrate:
           args: hydrate
           description: Hydrate the .env file with Azure Key Vault secrets.
           executable: key_vault_extension

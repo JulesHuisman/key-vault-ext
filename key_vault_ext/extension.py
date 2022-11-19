@@ -13,6 +13,7 @@ from meltano.edk import models
 from meltano.edk.extension import ExtensionBase
 from meltano.edk.process import Invoker, log_subprocess_error
 
+from key_vault_ext.environment import Environment
 from key_vault_ext.key_vault import KeyVault
 
 log = structlog.get_logger()
@@ -62,5 +63,12 @@ class KeyVaultExtension(ExtensionBase):
         """
         Fetch secrets from Azure Key Vault and store them in a .env file.
         """
+        environment = Environment(".env")
         key_vault = KeyVault()
-        key_vault.print_to_file(".env")
+
+        variables = {
+            **environment.variables,
+            **key_vault.variables,
+        }
+
+        environment.write_variables(variables)

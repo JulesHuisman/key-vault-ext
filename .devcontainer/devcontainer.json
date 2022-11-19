@@ -19,5 +19,6 @@
     "waderyan.gitblame"
   ],
   "containerUser": "root",
+  "remoteUser": "root",
   "postCreateCommand": "poetry install"
 }

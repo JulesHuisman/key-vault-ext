@@ -28,5 +28,5 @@ meltano invoke key-vault:set-permission user@domain.com
 4. Hydrate your .env file.
 
 ```
-meltano invoke key-vault:hydrate-env
+meltano invoke key-vault:hydrate
 ```
