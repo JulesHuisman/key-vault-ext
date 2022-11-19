@@ -1,0 +1,23 @@
+{
+  "name": "key-vault",
+  "image": "ghcr.io/quantile-development/vscode-python-azure:3.8",
+  // "build": {
+  // "dockerfile": "Dockerfile",
+  // "context": ".."
+  // },
+  // "features": {
+  // "ghcr.io/devcontainers/features/azure-cli:1": {}
+  // "ghcr.io/devcontainers-contrib/features/poetry:1": {}
+  // },
+  "extensions": [
+    "ms-python.vscode-pylance",
+    "njpwerner.autodocstring",
+    "zhuangtongfa.material-theme",
+    "bungcip.better-toml",
+    "redhat.vscode-yaml",
+    "esbenp.prettier-vscode",
+    "waderyan.gitblame"
+  ],
+  "containerUser": "root",
+  "postCreateCommand": "poetry install"
+}

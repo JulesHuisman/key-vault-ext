@@ -1,0 +1,40 @@
+[tool.poetry]
+name = "key-vault-ext"
+version = "0.0.1"
+description = "`key-vault-ext` is a Meltano utility extension."
+authors = ["Jules Huisman"]
+license = "Apache 2.0"
+packages = [
+    { include = "key_vault_ext" }
+    # uncomment this if you want to include static assets
+    # { include = "files_key-vault-ext.*" }
+]
+# If you need to static assets with your extension, you can add them here.
+# Under a directory path of "files_key-vault-ext/"
+#include = [
+#    "files_key-vault-ext/somefile.thing"
+#]
+
+[tool.poetry.dependencies]
+python = "<3.11,>=3.7"
+structlog = "^21.2.0"
+PyYAML = "^6.0.0"
+pydantic = "^1.9.0"
+click = "^8.1.3"
+typer = "^0.6.1"
+"meltano.edk"= {git = "https://github.com/meltano/edk.git", rev="main"}
+azure-identity = "^1.12.0"
+azure-keyvault-secrets = "^4.6.0"
+
+[tool.poetry.dev-dependencies]
+black = "^22.3.0"
+isort = "^5.10.1"
+flake8 = "^3.9.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.8"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+key_vault_extension = 'key_vault_ext.main:app'
+azure_invoker = 'key_vault_ext.pass_through:pass_through_cli'

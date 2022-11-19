@@ -1,0 +1,49 @@
+version: 1
+default_environment: dev
+project_id: 31931b46-6006-42c2-9207-43b60d175c95
+environments:
+  - name: dev
+plugins:
+  utilities:
+    - name: key-vault
+      namespace: key_vault
+      pip_url: -e .
+      executable: key_vault_extension
+      settings:
+        - name: key_vault_name
+          env: KEY_VAULT_NAME
+          label: The name of the Azure Key Vault.
+        - name: azure_subscription
+          env: AZURE_SUBSCRIPTION
+          label: The name of the Azure Subscription.
+        - name: azure_tenant
+          env: AZURE_TENANT
+          label: The Azure tenant you would like to authenticate to.
+      commands:
+        initialize:
+          args: initialize
+          executable: key_vault_extension
+        set-permissions:
+          args: |
+            keyvault
+            set-policy 
+            --name $KEY_VAULT_NAME
+            --subscription $AZURE_SUBSCRIPTION
+            --secret-permissions delete get list set
+            --upn
+          executable: azure_invoker
+        login:
+          args: login --tenant $AZURE_TENANT
+          executable: azure_invoker
+        describe:
+          args: describe
+          description: Describe the Azure Key Vault Extension.
+          executable: key_vault_extension
+        hydrate-env:
+          args: hydrate
+          description: Hydrate the .env file with Azure Key Vault secrets.
+          executable: key_vault_extension
+      config:
+        key_vault_name: quantile-internal
+        azure_subscription: quantile
+        azure_tenant: quantile.nl
