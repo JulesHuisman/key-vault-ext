@@ -1,6 +1,6 @@
 # Key Vault Extension
 
-KeyVault is A meltano utility extension for KeyVault that wraps the `az keyvault` command.
+A meltano utility extension for Azure Key Vault that wraps the `az keyvault` command.
 
 ## Command
 
